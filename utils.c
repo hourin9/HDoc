@@ -10,15 +10,12 @@ struct hdoc_State default_state()
         };
 }
 
-Image make_abundant_canvas()
+Image new_page()
 {
-        Image image = GenImageColor(800, 1920, WHITE);
+        Image image = GenImageColor(
+                PAGE_WIDTH,
+                PAGE_HEIGHT,
+                WHITE);
         return image;
-}
-
-Image trim_canvas(Image img)
-{
-        // TODO: make this actually useful
-        return ImageCopy(img);
 }
 
