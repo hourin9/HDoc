@@ -2,9 +2,17 @@
 
 #include <raylib.h>
 
+struct hdoc_State default_state()
+{
+        return (struct hdoc_State) {
+                .bg = 'd',
+                .fg = 'd',
+        };
+}
+
 Image make_abundant_canvas()
 {
-        Image image = GenImageColor(800, 99999, WHITE);
+        Image image = GenImageColor(800, 1920, WHITE);
         return image;
 }
 
