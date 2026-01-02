@@ -7,7 +7,7 @@ int main(void)
 
         Image canvas = new_page();
         struct hdoc_State state = default_state();
-        render_line(&state, &canvas, "test");
+        render(&state, &canvas, "test");
 
         Texture render = LoadTextureFromImage(canvas);
         UnloadImage(canvas);
