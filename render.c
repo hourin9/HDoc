@@ -48,10 +48,18 @@ void render(struct hdoc_State *st, Image *img, const char *buf)
                 char *line = gorb(tmp);
 
                 tmp += strlen(line);
-                if (tmp[0] == '$' && tmp[1] == '$')
+                if (tmp[0] == '$' && tmp[1] == '$') {
                         tmp += 2;
+                        st->_command = true;
+                }
 
-                render_line(st, img, line);
+                if (!st->_command)
+                        render_line(st, img, line);
+                else {
+                        run_command(st, line);
+                        st->_command = false;
+                }
+
                 free(line);
         }
 }

@@ -2,6 +2,8 @@
 
 #include <raylib.h>
 
+#include <stdbool.h>
+
 #define PAGE_WIDTH 480
 #define PAGE_HEIGHT 800
 
@@ -13,9 +15,12 @@ struct hdoc_State {
 
         Vector2 cursor;
         Font font;
+
+        bool _command;
 };
 
 struct hdoc_State default_state();
+void run_command(struct hdoc_State*, const char*);
 
 char *gorb(const char*);
 

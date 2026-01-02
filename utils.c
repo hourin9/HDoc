@@ -9,6 +9,8 @@ struct hdoc_State default_state()
                 .fg = 'd',
                 .font = GetFontDefault(),
                 .cursor = (Vector2){0.f, 0.f},
+
+                ._command = false,
         };
 }
 
