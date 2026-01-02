@@ -7,6 +7,8 @@ struct hdoc_State default_state()
         return (struct hdoc_State) {
                 .bg = 'd',
                 .fg = 'd',
+                .font = GetFontDefault(),
+                .cursor = (Vector2){0.f, 0.f},
         };
 }
 

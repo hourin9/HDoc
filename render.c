@@ -2,6 +2,20 @@
 
 #include <raylib.h>
 
+static Vector2 _measure_text(const struct hdoc_State *st, const char *buf)
+{
+        return MeasureTextEx(st->font, buf, 20.0, 1.0);
+}
+
+static void _advance_cursor(struct hdoc_State *st, Vector2 text)
+{
+        st->cursor.x += text.x;
+        if (st->cursor.x > PAGE_WIDTH) {
+                st->cursor.y += text.y;
+                st->cursor.x = 0.f;
+        }
+}
+
 void render_line(struct hdoc_State *st, Image *img, const char *buf)
 {
         if (img == nullptr
@@ -9,6 +23,13 @@ void render_line(struct hdoc_State *st, Image *img, const char *buf)
         || st == nullptr)
                 return;
 
-        ImageDrawText(img, buf, 0, 0, 20, BLACK);
+        ImageDrawTextEx(
+                img, st->font, buf,
+                st->cursor,
+                20.0,
+                1.0,
+                BLACK);
+
+        _advance_cursor(st, _measure_text(st, buf));
 }
 

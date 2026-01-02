@@ -8,6 +8,9 @@
 struct hdoc_State {
         // Available: d (default).
         char fg, bg;
+
+        Vector2 cursor;
+        Font font;
 };
 
 struct hdoc_State default_state();
