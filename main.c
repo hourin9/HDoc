@@ -7,7 +7,7 @@ int main(void)
 
         Image canvas = new_page();
         struct hdoc_State state = default_state();
-        render(&state, &canvas, "test $$r hehe");
+        render(&state, &canvas, "test $$r hehe $$b test test balls $$y   chowayo");
 
         Texture render = LoadTextureFromImage(canvas);
         UnloadImage(canvas);

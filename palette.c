@@ -33,3 +33,8 @@ Color get_palette_color(char ch)
         return fg[col];
 }
 
+const char *get_color_names()
+{
+        return name;
+}
+

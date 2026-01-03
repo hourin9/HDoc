@@ -37,4 +37,5 @@ void render(struct hdoc_State*, Image*, const char*);
 Image new_page();
 
 Color get_palette_color(char);
+const char *get_color_names();
 
