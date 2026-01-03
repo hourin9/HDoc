@@ -1,8 +1,9 @@
 #pragma once
 
-#include <raylib.h>
-
 #include <stdbool.h>
+#include <stddef.h>
+
+#include <raylib.h>
 
 #define PAGE_WIDTH 480
 #define PAGE_HEIGHT 800
@@ -22,7 +23,13 @@ struct hdoc_State {
 struct hdoc_State default_state();
 void run_command(struct hdoc_State*, const char*);
 
-char *gorb(const char*, const char *terminal);
+struct hdoc_GorbResult {
+        size_t count;
+        bool command;
+        char *str;
+};
+
+struct hdoc_GorbResult gorb(const char*, const char *terminal);
 
 void render_line(struct hdoc_State*, Image*, const char*);
 void render(struct hdoc_State*, Image*, const char*);
