@@ -39,3 +39,5 @@ Image new_page();
 Color get_palette_color(char);
 const char *get_color_names();
 
+char *chomp_file(const char *path);
+
