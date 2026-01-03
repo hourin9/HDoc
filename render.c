@@ -31,7 +31,7 @@ void render_line(struct hdoc_State *st, Image *img, const char *buf)
                 st->cursor,
                 20.0,
                 1.0,
-                BLACK);
+                get_palette_color(st->fg));
 
         _advance_cursor(st, _measure_text(st, buf));
 }
