@@ -45,22 +45,27 @@ void render(struct hdoc_State *st, Image *img, const char *buf)
 
         const char *tmp = buf;
         while (*tmp != '\0') {
-                char *line = gorb(tmp);
+                struct hdoc_GorbResult line = gorb(tmp, "");
 
-                tmp += strlen(line);
-                if (tmp[0] == '$' && tmp[1] == '$') {
+                tmp += line.count;
+                if (line.command) {
                         tmp += 2;
-                        st->_command = true;
+                        goto render;
+continue_command:
+                        line = gorb(tmp, " ");
+                        tmp += line.count;
+                        run_command(st, line.str);
+                        free(line.str);
+                        goto loop_end;
                 }
 
-                if (!st->_command)
-                        render_line(st, img, line);
-                else {
-                        run_command(st, line);
-                        st->_command = false;
-                }
+render:
+                render_line(st, img, line.str);
+                free(line.str);
 
-                free(line);
+                if (line.command)
+                        goto continue_command;
+loop_end:
         }
 }
 
