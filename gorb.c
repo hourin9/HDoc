@@ -11,9 +11,6 @@ struct hdoc_GorbResult gorb(const char *inp, const char *terminal)
         bool command = false;
 
         while (inp[c] != '\0') {
-                if (inp[c] == '\n')
-                        TODO;
-
                 if (strchr(terminal, inp[c]))
                         break;
 

@@ -54,9 +54,10 @@ void render(struct hdoc_State *st, Image *img, const char *buf)
 
         const char *tmp = buf;
         while (*tmp != '\0') {
-                struct hdoc_GorbResult line = gorb(tmp, "");
+                struct hdoc_GorbResult line = gorb(tmp, "\n\0");
 
                 tmp += line.count;
+
                 if (line.command) {
                         tmp += 2;
                         goto render;
@@ -75,6 +76,12 @@ render:
                 if (line.command)
                         goto continue_command;
 loop_end:
+
+                if (*tmp == '\n') {
+                        tmp += 1;
+                        st->level = 0;
+                }
+
         }
 }
 
