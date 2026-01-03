@@ -5,9 +5,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+static const float _FONT_SIZE[MAX_HLEVEL] = {
+        18.f,
+        30.f,
+        26.f,
+        24.f,
+        22.f,
+        20.f,
+};
+
 static Vector2 _measure_text(const struct hdoc_State *st, const char *buf)
 {
-        return MeasureTextEx(st->font, buf, 20.0, 1.0);
+        return MeasureTextEx(st->font, buf, _FONT_SIZE[st->level], 0.0);
 }
 
 static void _advance_cursor(struct hdoc_State *st, Vector2 text)
@@ -29,8 +38,8 @@ void render_line(struct hdoc_State *st, Image *img, const char *buf)
         ImageDrawTextEx(
                 img, st->font, buf,
                 st->cursor,
-                20.0,
-                1.0,
+                _FONT_SIZE[st->level],
+                0.0,
                 get_palette_color(st->fg));
 
         _advance_cursor(st, _measure_text(st, buf));

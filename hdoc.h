@@ -2,11 +2,14 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #include <raylib.h>
 
 #define PAGE_WIDTH 480
 #define PAGE_HEIGHT 800
+
+#define MAX_HLEVEL 6
 
 #define TODO {}
 
@@ -16,6 +19,8 @@ struct hdoc_State {
 
         Vector2 cursor;
         Font font;
+
+        uint8_t level;
 
         bool _command;
 };
