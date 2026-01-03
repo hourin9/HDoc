@@ -63,7 +63,8 @@ void render(struct hdoc_State *st, Image *img, const char *buf)
                         goto render;
 continue_command:
                         line = gorb(tmp, " ");
-                        tmp += line.count;
+                        // Consoom the whitespace.
+                        tmp += line.count + 1;
                         run_command(st, line.str);
                         free(line.str);
                         goto loop_end;
